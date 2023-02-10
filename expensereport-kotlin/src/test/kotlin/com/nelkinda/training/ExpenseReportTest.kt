@@ -61,7 +61,7 @@ Total expenses: 8000"""
         val expense = Expense(3000, ExpenseType.BREAKFAST)
         val expectedMarker = "X"
 
-        val actualMarker = expense.markExpense()
+        val actualMarker = expense.limitStatus
 
         assertEquals(expectedMarker, actualMarker)
     }

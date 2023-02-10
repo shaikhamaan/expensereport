@@ -21,8 +21,7 @@ class ExpenseReport {
         var expenseDetails = ""
         for (expense in expenses) {
             val expenseName = expense.type.expenseName
-            val mealOverExpensesMarker = expense.markExpense()
-            expenseDetails += "\n" + expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker
+            expenseDetails += "\n" + expenseName + "\t" + expense.amount + "\t" + expense.limitStatus
         }
         return expenseDetails
     }
@@ -32,8 +31,6 @@ class ExpenseReport {
         val report = generateReport(expenses)
         println(report)
     }
-
-
 
 
     fun calculateMealExpense(expenses: List<Expense>): Int {
