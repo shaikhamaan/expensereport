@@ -12,12 +12,13 @@ class ExpenseReportTest {
         val breakfastExpenseOne = Expense(1000, ExpenseType.BREAKFAST)
         val breakfastExpenseTwo = Expense(1000, ExpenseType.BREAKFAST)
         val dinnerExpense = Expense(3000, ExpenseType.DINNER)
-        val expectedReport = """Expenses ${Date()}
-Breakfast	1000	 
-Breakfast	1000	 
-Dinner	3000	 
-Meal expenses: 5000
-Total expenses: 5000"""
+        val expectedReport =
+            "Expenses ${Date()}\n" +
+                    "Breakfast\t1000\t \n" +
+                    "Breakfast\t1000\t \n" +
+                    "Dinner\t3000\t \n" +
+                    "Meal expenses: 5000\n" +
+                    "Total expenses: 5000"
 
         val expenses: List<Expense> = listOf(breakfastExpenseOne, breakfastExpenseTwo, dinnerExpense)
         val expenseReport = ExpenseReport()
@@ -42,11 +43,12 @@ Total expenses: 5000"""
     fun `it should return report for expenses outside limit`() {
         val breakfastExpenseOne = Expense(2000, ExpenseType.BREAKFAST)
         val dinnerExpense = Expense(6000, ExpenseType.DINNER)
-        val expectedReport = """Expenses ${Date()}
-Breakfast	2000	X
-Dinner	6000	X
-Meal expenses: 8000
-Total expenses: 8000"""
+        val expectedReport =
+            "Expenses ${Date()}\n" +
+                    "Breakfast\t2000\tX\n" +
+                    "Dinner\t6000\tX\n" +
+                    "Meal expenses: 8000\n" +
+                    "Total expenses: 8000"
 
         val expenses: List<Expense> = listOf(breakfastExpenseOne, dinnerExpense)
         val expenseReport = ExpenseReport()

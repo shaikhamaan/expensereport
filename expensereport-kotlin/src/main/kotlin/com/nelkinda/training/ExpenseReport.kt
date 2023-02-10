@@ -6,7 +6,7 @@ class ExpenseReport {
     fun generateReport(expenses: List<Expense>): String {
         var report = ""
         report += "Expenses ${Date()}"
-        report += getAllExpensesWithAmountAndLimitMark(expenses)
+        report += exportAllExpenses(expenses)
 
         val mealExpenses = calculateMealExpense(expenses)
         report += "\nMeal expenses: $mealExpenses"
@@ -17,11 +17,10 @@ class ExpenseReport {
         return report
     }
 
-    private fun getAllExpensesWithAmountAndLimitMark(expenses: List<Expense>): String {
+    private fun exportAllExpenses(expenses: List<Expense>): String {
         var expenseDetails = ""
         for (expense in expenses) {
-            val expenseName = expense.type.expenseName
-            expenseDetails += "\n" + expenseName + "\t" + expense.amount + "\t" + expense.limitStatus
+            expenseDetails += "\n" + expense.export()
         }
         return expenseDetails
     }
