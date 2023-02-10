@@ -22,7 +22,7 @@ Total expenses: 5000"""
         val expenses: List<Expense> = listOf(breakfastExpenseOne, breakfastExpenseTwo, dinnerExpense)
         val expenseReport = ExpenseReport()
 
-        val actualReport = expenseReport.printReport(expenses)
+        val actualReport = expenseReport.generateReport(expenses)
 
         assertEquals(expectedReport, actualReport)
     }
@@ -57,9 +57,18 @@ Total expenses: 8000"""
         val expenses: List<Expense> = listOf(breakfastExpenseOne, dinnerExpense)
         val expenseReport = ExpenseReport()
 
-        val actualReport = expenseReport.printReport(expenses)
+        val actualReport = expenseReport.generateReport(expenses)
 
         assertEquals(expectedReport, actualReport)
     }
 
+    @Test
+    fun `it should mark expense if limit exceeds`() {
+        val expense = addExpense(3000, ExpenseType.BREAKFAST)
+        val expectedMarker = "X"
+
+        val actualMarker = ExpenseReport().markExpense(expense)
+
+        assertEquals(expectedMarker, actualMarker)
+    }
 }
