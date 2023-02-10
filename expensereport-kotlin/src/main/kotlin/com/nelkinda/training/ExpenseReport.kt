@@ -30,7 +30,8 @@ class ExpenseReport {
                 ExpenseType.CAR_RENTAL -> expenseName = "Car Rental"
             }
 
-            val mealOverExpensesMarker = if (expense.type == ExpenseType.DINNER && expense.amount > 5000 || expense.type == ExpenseType.BREAKFAST && expense.amount > 1000) "X" else " "
+            val mealOverExpensesMarker =
+                if (expense.type == ExpenseType.DINNER && expense.amount > 5000 || expense.type == ExpenseType.BREAKFAST && expense.amount > 1000) "X" else " "
 
             println(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker)
 
@@ -39,5 +40,15 @@ class ExpenseReport {
 
         println("Meal expenses: $mealExpenses")
         println("Total expenses: $total")
+    }
+
+    fun calculateMealExpense(expenses: List<Expense>): Int {
+        var mealExpenses = 0
+        for (expense in expenses) {
+            if (expense.type == ExpenseType.DINNER || expense.type == ExpenseType.BREAKFAST) {
+                mealExpenses += expense.amount
+            }
+        }
+        return mealExpenses
     }
 }
