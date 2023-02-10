@@ -43,4 +43,23 @@ Total expenses: 5000"""
 
         assertEquals(3500, mealExpense)
     }
+
+    @Test
+    fun `it should return report for expenses outside limit`() {
+        val breakfastExpenseOne = addExpense(2000, ExpenseType.BREAKFAST)
+        val dinnerExpense = addExpense(6000, ExpenseType.DINNER)
+        val expectedReport = """Expenses ${Date()}
+Breakfast	2000	X
+Dinner	6000	X
+Meal expenses: 8000
+Total expenses: 8000"""
+
+        val expenses: List<Expense> = listOf(breakfastExpenseOne, dinnerExpense)
+        val expenseReport = ExpenseReport()
+
+        val actualReport = expenseReport.printReport(expenses)
+
+        assertEquals(expectedReport, actualReport)
+    }
+
 }
