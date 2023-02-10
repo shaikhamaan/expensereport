@@ -2,17 +2,6 @@ package com.nelkinda.training
 
 import java.util.Date
 
-enum class ExpenseType(val expenseName: String) {
-    DINNER("Dinner"),
-    BREAKFAST("Breakfast"),
-    CAR_RENTAL("Car Rental")
-}
-
-class Expense {
-    lateinit var type: ExpenseType
-    var amount: Int = 0
-}
-
 class ExpenseReport {
     fun generateReport(expenses: List<Expense>): String {
         var report = ""
@@ -32,7 +21,7 @@ class ExpenseReport {
         var expenseDetails = ""
         for (expense in expenses) {
             val expenseName = expense.type.expenseName
-            val mealOverExpensesMarker = markExpense(expense)
+            val mealOverExpensesMarker = expense.markExpense()
             expenseDetails += "\n" + expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker
         }
         return expenseDetails
@@ -44,10 +33,7 @@ class ExpenseReport {
         println(report)
     }
 
-    fun markExpense(expense: Expense): String =
-        if (expense.type == ExpenseType.DINNER && expense.amount > 5000 || expense.type == ExpenseType.BREAKFAST && expense.amount > 1000) {
-            "X"
-        } else  " "
+
 
 
     fun calculateMealExpense(expenses: List<Expense>): Int {
