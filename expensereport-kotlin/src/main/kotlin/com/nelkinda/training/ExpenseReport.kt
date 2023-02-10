@@ -17,7 +17,6 @@ class ExpenseReport {
         var mealExpenses = 0
         var report = ""
 
-        println("Expenses ${Date()}")
         report += "Expenses ${Date()}"
 
         for (expense in expenses) {
@@ -35,18 +34,15 @@ class ExpenseReport {
             val mealOverExpensesMarker =
                 if (expense.type == ExpenseType.DINNER && expense.amount > 5000 || expense.type == ExpenseType.BREAKFAST && expense.amount > 1000) "X" else " "
 
-            println(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker)
             report += "\n" + expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker
 
             total += expense.amount
         }
 
-        println("Meal expenses: $mealExpenses")
-        println("Total expenses: $total")
-
-        report += "\n" + "Meal expenses: $mealExpenses"
+        report += "\nMeal expenses: $mealExpenses"
         report += "\nTotal expenses: $total"
 
+        println(report)
         return report
     }
 

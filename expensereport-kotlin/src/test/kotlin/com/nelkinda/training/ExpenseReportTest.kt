@@ -20,12 +20,10 @@ Meal expenses: 5000
 Total expenses: 5000"""
 
         val expenses: List<Expense> = listOf(breakfastExpenseOne, breakfastExpenseTwo, dinnerExpense)
-
         val expenseReport = ExpenseReport()
 
         val actualReport = expenseReport.printReport(expenses)
-        println("actual report")
-        println(actualReport)
+
         assertEquals(expectedReport, actualReport)
     }
 
